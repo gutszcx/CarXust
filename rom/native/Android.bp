@@ -1,0 +1,9 @@
+cc_binary {
+    name: "carxust-can",
+    srcs: ["carxust-can.c"],
+    cflags: [
+        "-Wall",
+        "-Wextra",
+        "-D_GNU_SOURCE",
+    ],
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Permissões privilegiadas concedidas ao CarXust quando instalado em
+  /system/priv-app (build AAOS). Permissões dangerous/runtime são tratadas
+  por carxust-default-permissions.xml.
+-->
+<permissions>
+    <privapp-permissions package="com.carxust">
+        <permission name="android.car.permission.CAR_SPEED" />
+        <permission name="android.car.permission.CAR_POWERTRAIN" />
+        <permission name="android.car.permission.CAR_ENERGY" />
+        <permission name="android.car.permission.CAR_INFO" />
+        <permission name="android.car.permission.CAR_EXTERIOR_ENVIRONMENT" />
+        <permission name="android.car.permission.CAR_HVAC" />
+        <permission name="android.car.permission.CAR_DOOR_CONTROL" />
+        <permission name="android.car.permission.CAR_TIRES" />
+    </privapp-permissions>
+</permissions>

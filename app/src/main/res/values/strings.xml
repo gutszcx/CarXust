@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">CarXust</string>
+    <string name="app_tagline">Painel automotivo inteligente</string>
+    <string name="channel_vehicle">Telemetria do veículo</string>
+    <string name="channel_vehicle_desc">Mantém o painel e a multimídia ativos</string>
+    <string name="cluster_waiting">Cluster: aguardando segunda tela</string>
+    <string name="cluster_active">Cluster ativo na tela %1$d</string>
+    <string name="cluster_disabled">Cluster desativado</string>
+    <string name="source_mock">Simulador</string>
+    <string name="source_obd">OBD-II Bluetooth</string>
+    <string name="source_can">CAN / SocketCAN</string>
+    <string name="source_car">Android Automotive (CarProperty)</string>
+    <string name="permission_needed">Permissões necessárias para telemetria e Bluetooth</string>
+</resources>

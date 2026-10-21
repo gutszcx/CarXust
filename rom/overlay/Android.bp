@@ -1,0 +1,12 @@
+// Módulo do APK pré-compilado do CarXust.
+// O script de integração copia este arquivo e o APK para
+// device/brcm/rpi4/carxust/.
+android_app_import {
+    name: "CarXust",
+    apk: "CarXust.apk",
+    certificate: "platform",
+    privileged: true,
+    dex_preopt: {
+        enabled: false,
+    },
+}

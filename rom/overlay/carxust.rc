@@ -1,0 +1,7 @@
+# CarXust: ajustes de integração após o boot.
+#
+# Empacotado em /system/etc/init/carxust.rc por carxust_product.mk.
+# exec_background evita bloquear a fila do init; o script é best-effort.
+
+on property:sys.boot_completed=1
+    exec_background - root -- /system/bin/sh /system/etc/carxust-boot.sh

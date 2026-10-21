@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Concessão automática das permissões runtime no primeiro boot.
+  Usado apenas em builds de ROM; em instalação via ADB o usuário concede
+  as permissões na tela de boas-vindas do Android.
+-->
+<exceptions>
+    <exception package="com.carxust">
+        <permission name="android.permission.ACCESS_FINE_LOCATION" fixed="false" />
+        <permission name="android.permission.ACCESS_COARSE_LOCATION" fixed="false" />
+        <permission name="android.permission.CALL_PHONE" fixed="false" />
+        <permission name="android.permission.BLUETOOTH_CONNECT" fixed="false" />
+        <permission name="android.permission.BLUETOOTH_SCAN" fixed="false" />
+        <permission name="android.permission.POST_NOTIFICATIONS" fixed="false" />
+        <permission name="android.permission.READ_MEDIA_AUDIO" fixed="false" />
+        <permission name="android.permission.READ_EXTERNAL_STORAGE" fixed="false" />
+    </exception>
+</exceptions>
