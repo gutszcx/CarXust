@@ -19,11 +19,13 @@ e Orange Pi Zero 3.
   de internet pré-configuradas.
 - **Clima**, **navegação** (mapa esquemático + GPS), **telefone** (intent de
   discagem), **aplicativos** instalados e **diagnóstico** em tempo real.
-- **Quatro fontes de telemetria**:
+- **Tela "Sensores do painel do carro"** – 20 grupos, mostra apenas os que o veículo possui via ESP32/OBD/CAN/VHAL.
+- **Cinco fontes de telemetria**:
   - `Simulador` (funciona sem hardware);
   - `OBD-II` via ELM327/STN1110 Bluetooth SPP;
   - `SocketCAN` via `candump`/`carxust-can` (500 kbit/s configurável);
-  - `Android Automotive` via `CarPropertyManager` (VHAL, por reflexão).
+  - `Android Automotive` via `CarPropertyManager` (VHAL, por reflexão);
+  - `ESP32` via TCP Wi-Fi (OBD2 direto). Veja [docs/esp32.md](docs/esp32.md).
 - **ROM instalável** para Raspberry Pi 4 (AAOS, Android 17) e integração em
   BSP Android 12 do Orange Pi Zero 3.
 - Interface em português, tema escuro, acentos configuráveis, unidades
@@ -31,16 +33,11 @@ e Orange Pi Zero 3.
 
 ## Hardware suportado
 
-| Placa | Android | Telas | Status da ROM |
-|---|---|---|---|
-| Raspberry Pi 4B (2/4/8 GB) | AAOS 17 (raspberry-vanilla) | 2× HDMI | build + integração por script |
-| Raspberry Pi 5 | AAOS 17 (raspberry-vanilla) | 2× HDMI | build + integração por script |
-| Orange Pi Zero 3 (1/2/4 GB) | Android 12 BSP (Allwinner) | 1× HDMI | instalação via ADB/repack |
-| Tablet/celular/TV box | Android 10+ | 1 ou 2 | APK direto |
+- **Raspberry Pi 4B+** – Android Automotive OS (alvo principal)
+- **Orange Pi Zero 3+** – Android/Linux com CAN SocketCAN ou ESP32 via Wi-Fi
+- **Tablet/celular/TV box** – Android 10+
 
-> O Orange Pi Zero 3 tem **apenas uma saída HDMI**. Para dois displays use
-> Raspberry Pi 4/5, Orange Pi 5 ou um adaptador USB secundário suportado pelo
-> Android. Veja [docs/hardware.md](docs/hardware.md).
+Veja [docs/hardware.md](docs/hardware.md) para detalhes de conexão.
 
 ## Início rápido (somente o app)
 
@@ -138,6 +135,7 @@ docs/            arquitetura, instalação, ROM, hardware, CAN/OBD e troubleshoo
 - [Instalação e uso](docs/instalacao.md)
 - [Build da ROM](docs/rom-build.md)
 - [Hardware](docs/hardware.md)
+- [ESP32 + OBD2](docs/esp32.md)
 - [CAN e OBD-II](docs/can-obd.md)
 - [Desenvolvimento e testes](docs/desenvolvimento.md)
 - [Solução de problemas](docs/solucao-de-problemas.md)

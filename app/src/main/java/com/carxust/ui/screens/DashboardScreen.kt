@@ -24,6 +24,7 @@ import androidx.compose.material.icons.rounded.Bolt
 import androidx.compose.material.icons.rounded.Navigation
 import androidx.compose.material.icons.rounded.Phone
 import androidx.compose.material.icons.rounded.PlayArrow
+import androidx.compose.material.icons.rounded.Sensors
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Speed
 import androidx.compose.material.icons.rounded.Timer
@@ -103,6 +104,12 @@ fun DashboardScreen(
                     icon = Icons.Rounded.Speed
                 )
             }
+            SensorSummaryRow(
+                vehicle = vehicle,
+                accent = accent,
+                onOpen = { onScreen(CarScreen.SENSORS) },
+                modifier = Modifier.padding(top = 10.dp)
+            )
             Spacer(Modifier.height(12.dp))
 
             Row(
@@ -298,6 +305,7 @@ private fun BottomDock(
         DockButton(Icons.Rounded.AcUnit, "Clima", accent) { onScreen(CarScreen.CLIMATE) }
         DockButton(Icons.Rounded.Phone, "Telefone", accent) { onScreen(CarScreen.PHONE) }
         DockButton(Icons.Rounded.Apps, "Apps", accent) { onScreen(CarScreen.APPS) }
+        DockButton(Icons.Rounded.Sensors, "Sensores", accent) { onScreen(CarScreen.SENSORS) }
         DockButton(Icons.Rounded.Settings, "Ajustes", accent) { onScreen(CarScreen.SETTINGS) }
         Spacer(Modifier.width(8.dp))
         Box(
@@ -368,13 +376,67 @@ private fun BottomDock(
 }
 
 @Composable
+private fun SensorSummaryRow(
+    vehicle: VehicleState,
+    accent: Color,
+    onOpen: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val sensors = vehicle.sensors
+    val chips = buildList {
+        sensors.coolantC?.let { add("Água ${Formatters.temperature(it, false)}") }
+        sensors.oilPressureBar?.let {
+            add(String.format(java.util.Locale.US, "Óleo %.1f bar", it))
+        }
+        sensors.fuelPercent?.let { add("Comb ${Formatters.percent(it)}") }
+        sensors.injection?.lambda?.let {
+            add(String.format(java.util.Locale.US, "Lambda %.2f", it))
+        }
+        sensors.tires?.let {
+            add(
+                String.format(
+                    java.util.Locale.US,
+                    "TPMS %.1f bar",
+                    minOf(it.frontLeft, it.frontRight, it.rearLeft, it.rearRight)
+                )
+            )
+        }
+        sensors.brakePads?.frontPercent?.let { add("Pastilha ${Formatters.percent(it)}") }
+        sensors.steering?.angleDeg?.let {
+            add(String.format(java.util.Locale.US, "Volante %.0f°", it))
+        }
+    }
+    if (chips.isEmpty()) return
+
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        chips.take(4).forEach { text ->
+            CarChip(
+                text = text,
+                icon = Icons.Rounded.Sensors,
+                color = accent,
+                modifier = Modifier.clickable { onOpen() }
+            )
+        }
+        CarChip(
+            text = "Sensores do carro",
+            icon = Icons.Rounded.Sensors,
+            color = CarCyan,
+            modifier = Modifier.clickable { onOpen() }
+        )
+    }
+}
+
+@Composable
 private fun DockButton(
     icon: androidx.compose.ui.graphics.vector.ImageVector,
     label: String,
     accent: Color,
     onClick: () -> Unit
-) {
-    Row(
+) {    Row(
         modifier = Modifier
             .height(42.dp)
             .clip(RoundedCornerShape(14.dp))

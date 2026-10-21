@@ -25,6 +25,7 @@ import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.MusicNote
 import androidx.compose.material.icons.rounded.Navigation
 import androidx.compose.material.icons.rounded.Phone
+import androidx.compose.material.icons.rounded.Sensors
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Speed
 import androidx.compose.material.icons.rounded.Warning
@@ -195,6 +196,7 @@ private val navItems = listOf(
     NavItem(CarScreen.CLIMATE, Icons.Rounded.AcUnit, "Clima"),
     NavItem(CarScreen.PHONE, Icons.Rounded.Phone, "Telefone"),
     NavItem(CarScreen.APPS, Icons.Rounded.Apps, "Apps"),
+    NavItem(CarScreen.SENSORS, Icons.Rounded.Sensors, "Sensores"),
     NavItem(CarScreen.SETTINGS, Icons.Rounded.Settings, "Ajustes")
 )
 

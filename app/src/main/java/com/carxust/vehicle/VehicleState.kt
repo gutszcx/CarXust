@@ -88,6 +88,7 @@ data class VehicleState(
     val turnSignal: TurnSignal = TurnSignal.OFF,
     val gps: GpsState = GpsState(),
     val adas: AdasState = AdasState(),
+    val sensors: SensorReadings = SensorReadings(),
     val sourceLabel: String = "Simulador",
     val sourceConnected: Boolean = true,
     val sourceMessage: String = "Dados simulados",
@@ -142,6 +143,7 @@ data class VehiclePatch(
     val turnSignal: TurnSignal? = null,
     val gps: GpsState? = null,
     val adas: AdasState? = null,
+    val sensors: SensorReadings? = null,
     val rawCanFrame: String? = null
 )
 
@@ -174,6 +176,7 @@ fun VehicleState.applyPatch(patch: VehiclePatch): VehicleState = copy(
     turnSignal = patch.turnSignal ?: turnSignal,
     gps = patch.gps ?: gps,
     adas = patch.adas ?: adas,
+    sensors = patch.sensors ?: sensors,
     rawCanFrame = patch.rawCanFrame ?: rawCanFrame,
     lastUpdateMs = System.currentTimeMillis()
 )

@@ -207,6 +207,7 @@ fun SettingsScreen(
                     SourceChip("OBD-II", VehicleSourceType.OBD, config, accent, onConfig)
                     SourceChip("CAN", VehicleSourceType.CAN, config, accent, onConfig)
                     SourceChip("AAOS", VehicleSourceType.CAR_PROPERTY, config, accent, onConfig)
+                    SourceChip("ESP32", VehicleSourceType.ESP32, config, accent, onConfig)
                 }
                 Spacer(Modifier.height(12.dp))
                 when (config.vehicleSource) {
@@ -286,6 +287,46 @@ fun SettingsScreen(
                         style = MaterialTheme.typography.bodyMedium,
                         color = CarTextMuted
                     )
+
+                    VehicleSourceType.ESP32 -> {
+                        Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            OutlinedTextField(
+                                value = config.esp32Host,
+                                onValueChange = { value ->
+                                    onConfig { it.copy(esp32Host = value.trim().take(64)) }
+                                },
+                                label = { Text("Host do ESP32") },
+                                singleLine = true,
+                                modifier = Modifier.width(200.dp),
+                                colors = carTextFieldColors(accent)
+                            )
+                            OutlinedTextField(
+                                value = config.esp32Port,
+                                onValueChange = { value ->
+                                    onConfig {
+                                        it.copy(
+                                            esp32Port = value.filter(Char::isDigit)
+                                                .toIntOrNull()
+                                                ?.coerceIn(1, 65535)
+                                                ?: 3333
+                                        )
+                                    }
+                                },
+                                label = { Text("Porta") },
+                                singleLine = true,
+                                modifier = Modifier.width(120.dp),
+                                colors = carTextFieldColors(accent)
+                            )
+                        }
+                        Spacer(Modifier.height(8.dp))
+                        Text(
+                            text = "O ESP32 precisa estar na mesma rede do painel (por padrão o " +
+                                "firmware abre o Access Point 192.168.4.1 e escuta na porta 3333). " +
+                                "Reinicie a telemetria após mudar o host.",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = CarTextMuted
+                        )
+                    }
                 }
                 Spacer(Modifier.height(12.dp))
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {

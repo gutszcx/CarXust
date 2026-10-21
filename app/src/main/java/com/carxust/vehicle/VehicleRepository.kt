@@ -44,7 +44,9 @@ class VehicleRepository(
                         obdMac = it.obdMac,
                         canInterface = it.canInterface,
                         canBitrate = it.canBitrate,
-                        rawCan = it.showRawCan
+                        rawCan = it.showRawCan,
+                        esp32Host = it.esp32Host,
+                        esp32Port = it.esp32Port
                     )
                 }
                 .distinctUntilChanged()
@@ -72,6 +74,7 @@ class VehicleRepository(
                 showRawFrames = config.rawCan
             )
             VehicleSourceType.CAR_PROPERTY -> CarPropertySource(appContext)
+            VehicleSourceType.ESP32 -> Esp32Source(config.esp32Host, config.esp32Port)
         }
         _status.value = SourceStatus(next.name, false, "Iniciando...")
         _state.update {
@@ -113,7 +116,9 @@ class VehicleRepository(
                 obdMac = prefs.config.value.obdMac,
                 canInterface = prefs.config.value.canInterface,
                 canBitrate = prefs.config.value.canBitrate,
-                rawCan = prefs.config.value.showRawCan
+                rawCan = prefs.config.value.showRawCan,
+                esp32Host = prefs.config.value.esp32Host,
+                esp32Port = prefs.config.value.esp32Port
             )
         )
     }
@@ -164,6 +169,8 @@ class VehicleRepository(
         val obdMac: String,
         val canInterface: String,
         val canBitrate: Int,
-        val rawCan: Boolean
+        val rawCan: Boolean,
+        val esp32Host: String,
+        val esp32Port: Int
     )
 }

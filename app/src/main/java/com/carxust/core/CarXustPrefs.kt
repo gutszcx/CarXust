@@ -11,7 +11,8 @@ enum class VehicleSourceType {
     MOCK,
     OBD,
     CAN,
-    CAR_PROPERTY
+    CAR_PROPERTY,
+    ESP32
 }
 
 enum class AccentChoice {
@@ -29,6 +30,8 @@ data class UserConfig(
     val obdMac: String = "",
     val canInterface: String = "can0",
     val canBitrate: Int = 500_000,
+    val esp32Host: String = "192.168.4.1",
+    val esp32Port: Int = 3333,
     val accent: AccentChoice = AccentChoice.RED,
     val driverName: String = "Motorista",
     val autoStart: Boolean = true,
@@ -64,6 +67,8 @@ class CarXustPrefs(context: Context) {
             obdMac = prefs.getString(KEY_OBD_MAC, "") ?: "",
             canInterface = prefs.getString(KEY_CAN_IFACE, "can0") ?: "can0",
             canBitrate = prefs.getInt(KEY_CAN_BITRATE, 500_000),
+            esp32Host = prefs.getString(KEY_ESP32_HOST, "192.168.4.1") ?: "192.168.4.1",
+            esp32Port = prefs.getInt(KEY_ESP32_PORT, 3333),
             accent = accent,
             driverName = prefs.getString(KEY_DRIVER, "Motorista") ?: "Motorista",
             autoStart = prefs.getBoolean(KEY_AUTOSTART, true),
@@ -82,6 +87,8 @@ class CarXustPrefs(context: Context) {
             .putString(KEY_OBD_MAC, next.obdMac)
             .putString(KEY_CAN_IFACE, next.canInterface)
             .putInt(KEY_CAN_BITRATE, next.canBitrate)
+            .putString(KEY_ESP32_HOST, next.esp32Host)
+            .putInt(KEY_ESP32_PORT, next.esp32Port)
             .putString(KEY_ACCENT, next.accent.name)
             .putString(KEY_DRIVER, next.driverName)
             .putBoolean(KEY_AUTOSTART, next.autoStart)
@@ -99,6 +106,8 @@ class CarXustPrefs(context: Context) {
         const val KEY_OBD_MAC = "obd_mac"
         const val KEY_CAN_IFACE = "can_iface"
         const val KEY_CAN_BITRATE = "can_bitrate"
+        const val KEY_ESP32_HOST = "esp32_host"
+        const val KEY_ESP32_PORT = "esp32_port"
         const val KEY_ACCENT = "accent"
         const val KEY_DRIVER = "driver_name"
         const val KEY_AUTOSTART = "auto_start"

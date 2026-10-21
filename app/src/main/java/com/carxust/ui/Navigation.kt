@@ -7,6 +7,7 @@ enum class CarScreen(val title: String) {
     CLIMATE("Clima"),
     PHONE("Telefone"),
     APPS("Aplicativos"),
+    SENSORS("Sensores"),
     DIAGNOSTICS("Diagnóstico"),
     SETTINGS("Ajustes")
 }

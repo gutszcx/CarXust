@@ -51,6 +51,7 @@ import com.carxust.ui.screens.DiagnosticsScreen
 import com.carxust.ui.screens.MediaScreen
 import com.carxust.ui.screens.NavigationScreen
 import com.carxust.ui.screens.PhoneScreen
+import com.carxust.ui.screens.SensorsScreen
 import com.carxust.ui.screens.SettingsScreen
 import com.carxust.ui.theme.CarBackground
 import com.carxust.ui.theme.CarXustTheme
@@ -316,6 +317,12 @@ private fun CarXustRoot(
                 CarScreen.APPS -> AppsScreen(
                     config = config,
                     onScreen = { screen = it },
+                    modifier = contentModifier
+                )
+
+                CarScreen.SENSORS -> SensorsScreen(
+                    vehicle = vehicleState,
+                    config = config,
                     modifier = contentModifier
                 )
 
